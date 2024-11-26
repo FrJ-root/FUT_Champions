@@ -4,23 +4,19 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: black;
-}
-
 #myVideo {
-    right: 0;
-    bottom: 0;
+    margin: 0;
+    padding: 0;
     width: 100%;
-    height: 100%;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(27, 27, 27);
-    height: 50px;
+    background-color: rgb(0, 0, 0);
     border-bottom: 1px solid rgb(9, 255, 0);
+    width: 100%;
+    height: fit-content;
 }
 
 .logo {
@@ -64,4 +60,168 @@ header {
 .menu ul li a {
     text-decoration: none;
     color: white;
+}
+
+/* ___________________________ */
+
+#container{
+    width: 100%;
+    height: fit-content;
+    height: 700px;
+}
+
+.content{
+    width:100%;
+    height: 710px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    bottom: 720px;
+}
+
+.content .squad-field{
+    width: 850px;
+    display: flex;
+    background: url('/My_Frontend/src/assets/images/FUT-feild-Photoroom.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    opacity: 0.7;
+}
+.content .squad-field .field_card{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    margin: 20px;
+}
+.content .squad-field .field_card #cards{
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(/My_Frontend/src/assets/images/Borde1.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    filter: grayscale(50%);
+}
+.content .squad-field .field_card #cards img{
+    width: 60px;
+}
+.content .squad-field .field_card #cards, .playerName{
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    font-family: sans-serif;
+}
+.content .squad-field .field_card .properTitle, .properNum{
+    font-size: 6px;
+}
+.content .squad-field .field_card .playerName{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p{
+        margin-top: 5px;
+        margin-bottom: 40px;
+        font-size: 13px;
+    }
+}
+.content .squad-field .field_card .playerName .properTitle{
+    width: 150px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.content .squad-field .field_card .playerName .properNum{
+    width: 150px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.content .squad-field .field_card #cards:hover{
+    filter: grayscale(0%);
+    transform: translateY(-10px);
+}
+
+.content .Reserve-field{
+    margin-top: 20px;
+    width: 400px;
+    height: 670px;
+    border-radius: 10px;
+}
+
+.content .Reserve-field .players .img_players{
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    width: 100%;
+}
+
+.content .Reserve-field .players h3{
+    color: white;
+    font-family:sans-serif;
+}
+
+.content .Reserve-field .players .img_players img{
+   width: 80px;
+   height: 80px;
+}
+
+.content .Reserve-field .filters{
+    display: flex;
+    justify-content: center;
+}
+
+.content .Reserve-field .filters ul{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.content .Reserve-field .filters ul li{
+    list-style-type: none;
+}
+
+.content .Reserve-field .filters ul a{
+    text-decoration: none;
+    color: white;
+    font-family:sans-serif;
+}
+
+/* ___________________________ */
+
+footer{
+    height:fit-content;
+    background-color: rgb(0, 0, 0);
+    border-top: 1px solid rgb(9, 255, 0);
+}
+
+.container-footer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-footer .EAFC25, .trackers, .tools, .misc{
+    display: flex;
+    flex-direction: column;
+    justify-content:safe;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.container-footer .EAFC25 ul li , .trackers ul li , .tools ul li , .misc ul li{
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.container-footer .EAFC25 ul li a , .trackers ul li a , .tools ul li a , .misc ul li a{
+    text-decoration: none;
+    color: white;
+    font-family:sans-serif;
+    font-size: small;
+}
+.container-footer .EAFC25 h2 , .trackers h2 , .tools h2 , .misc h2{
+    color: white;
+    font-family: sans-serif;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
