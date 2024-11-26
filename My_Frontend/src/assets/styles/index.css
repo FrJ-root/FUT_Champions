@@ -143,48 +143,26 @@ header {
 }
 
 .content .Reserve-field{
-    margin-top: 20px;
     width: 400px;
-    height: 670px;
+    height: 650px;
     border-radius: 10px;
+    margin-top: 20px;
 }
-
-.content .Reserve-field .players .img_players{
-    display: flex;
-    flex-direction: row;
-    align-content: space-around;
-    width: 100%;
-}
-
-.content .Reserve-field .players h3{
-    color: white;
-    font-family:sans-serif;
-}
-
-.content .Reserve-field .players .img_players img{
-   width: 80px;
-   height: 80px;
-}
-
 .content .Reserve-field .filters{
     display: flex;
     justify-content: center;
 }
-
 .content .Reserve-field .filters ul{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
-
 .content .Reserve-field .filters ul li{
     list-style-type: none;
 }
-
-.content .Reserve-field .filters ul a{
-    text-decoration: none;
-    color: white;
-    font-family:sans-serif;
+.form{
+    height: 690px;
+    overflow-y: scroll;
 }
 
 /* ___________________________ */
@@ -194,12 +172,10 @@ footer{
     background-color: rgb(0, 0, 0);
     border-top: 1px solid rgb(9, 255, 0);
 }
-
 .container-footer{
     display: flex;
     justify-content: space-around;
 }
-
 .container-footer .EAFC25, .trackers, .tools, .misc{
     display: flex;
     flex-direction: column;
@@ -207,12 +183,10 @@ footer{
     margin-bottom: 10px;
     margin-top: 10px;
 }
-
 .container-footer .EAFC25 ul li , .trackers ul li , .tools ul li , .misc ul li{
     list-style-type: none;
     margin-top: 10px;
 }
-
 .container-footer .EAFC25 ul li a , .trackers ul li a , .tools ul li a , .misc ul li a{
     text-decoration: none;
     color: white;
