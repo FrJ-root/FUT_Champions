@@ -4,12 +4,6 @@
     box-sizing: border-box;
 }
 
-#myVideo {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -18,33 +12,27 @@ header {
     width: 100%;
     height: fit-content;
 }
-
 .logo {
     width: 90px;
     height: auto;
 }
-
 .logo img {
     width: 90px;
 }
-
 .socieux {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 500px;
 }
-
 .socieux .login {
     width: 210px;
     display: flex;
     justify-content: space-between;
 }
-
 .socieux .login .login-in h3 {
     text-align: center;
 }
-
 .menu ul {
     width: 500px;
     height: 50px;
@@ -52,11 +40,9 @@ header {
     justify-content: space-around;
     align-items: center;
 }
-
 .menu ul li {
     list-style-type: none;
 }
-
 .menu ul li a {
     text-decoration: none;
     color: white;
@@ -69,7 +55,9 @@ header {
     height: fit-content;
     height: 700px;
 }
-
+#myVideo {
+    width: 100%;
+}
 .content{
     width:100%;
     height: 710px;
@@ -78,7 +66,6 @@ header {
     position: relative;
     bottom: 720px;
 }
-
 .content .squad-field{
     width: 850px;
     display: flex;
@@ -86,7 +73,7 @@ header {
     background-size: 100%;
     background-repeat: no-repeat;
     margin-left: 10px;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 .content .squad-field .field_card{
     width: 100%;
@@ -123,7 +110,7 @@ header {
     justify-content: center;
     p{
         margin-top: 5px;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         font-size: 13px;
     }
 }
@@ -141,29 +128,45 @@ header {
     filter: grayscale(0%);
     transform: translateY(-10px);
 }
-
 .content .Reserve-field{
     width: 400px;
     height: 650px;
-    border-radius: 10px;
     margin-top: 20px;
 }
-.content .Reserve-field .filters{
+.content .Reserve-field .form{
+    width: 370px;
+    height: 690px;
+    margin-left: 20px;
+    background-color: rgb(0, 0, 0);
+    overflow-y: scroll;
+    opacity: 0.8;
+}
+.content .Reserve-field .form .picArea{
+    background-color: rgb(49, 48, 47);
+    width: 300px;
+    margin-left: 25px;
+}
+.content .Reserve-field .form .playerPointsArea{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+.content .Reserve-field .form .submit{
     display: flex;
     justify-content: center;
 }
-.content .Reserve-field .filters ul{
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-}
-.content .Reserve-field .filters ul li{
-    list-style-type: none;
-}
-.form{
-    height: 690px;
-    overflow-y: scroll;
-}
+
+
+
+
+
+
+
+
+
+
+
 
 /* ___________________________ */
 
