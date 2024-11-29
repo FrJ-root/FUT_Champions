@@ -48,9 +48,6 @@ header {
 }
 
 
-/* ___________________________ */
-
-
 #container{
     width: 100%;
     height: fit-content;
@@ -99,6 +96,7 @@ header {
     background-repeat: no-repeat;
     margin-left: 10px;
     opacity: 0.8;
+    margin-top: 9px;
 }
 .content .squad-field .field_card{
     width: 100%;
@@ -112,10 +110,16 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(/My_Frontend/src/assets/images/Borde1.png);
+    background-image: url(/My_Frontend/src/assets/images/Borde1-plus-.png);
     background-size: 100%;
     background-repeat: no-repeat;
     filter: grayscale(50%);
+}
+.draggable-item {
+    cursor: move;
+}
+.drop-zone {
+    display: flex;
 }
 .content .squad-field .field_card #cards img{
     width: 60px;
@@ -159,7 +163,7 @@ header {
 }
 .content .Reserve-field .form{
     width: 370px;
-    height: 690px;
+    height: 680px;
     margin-left: 20px;
     background-color: rgb(0, 0, 0);
     overflow-y: scroll;
@@ -184,22 +188,46 @@ header {
 .content .Reserve-field .form .submitArea .btn:hover{
     background-color: rgb(11, 59, 11);
 }
+#placement{
+    --g: 4px; 
+    --b: 12px;
+    --c: #669706;
+    padding: calc(var(--g) + var(--b));
+        --_c: #00000000 0 25%, var(--c) 0 50%;
+    --_g1: repeating-linear-gradient(90deg ,var(--_c)) repeat-x;
+    --_g2: repeating-linear-gradient(180deg,var(--_c)) repeat-y;
+    background:
+        var(--_g1) var(--_p, 25%) 0   ,var(--_g2) 0    var(--_p,125%),
+        var(--_g1) var(--_p,125%) 100%,var(--_g2) 100% var(--_p, 25%);
+    background-size: 200% var(--b),var(--b) 200%;
+    cursor: pointer;
+    filter: grayscale(50%);
+    transition: .3s;
+    height: 270px;
+    background-color: #000000;
+    position: relative;
+    bottom: 710px;
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+#placement:hover{
+    --_p: 75%;
+    filter: grayscale(0%);
+    --c: #ff7b00;
+}
+hr {
+    border: 1; 
+    height: 1px; 
+    background-color: #4a5568;
+    margin: 24px 0;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-/* ___________________________ */
 
 footer{
     height:fit-content;
+    position: relative;
+    top: 540px;
     background-color: rgb(0, 0, 0);
     border-top: 1px solid rgb(9, 255, 0);
 }
@@ -229,4 +257,49 @@ footer{
     font-family: sans-serif;
     margin-top: 15px;
     margin-bottom: 10px;
+}
+
+
+@media (max-width: 1000px){
+   
+    #container{
+        overflow: hidden;
+    }
+    .content{
+        width: 1000px;
+    }
+    .content .squad-field .field_card{
+        width: 600px;
+        height: 500px;
+    }
+    .content .squad-field{
+        width: 600px;
+        height: 500px;
+        position: relative;
+        top: 170px;
+        left: 10px;
+    }
+    .content .Reserve-field .form{
+        width: 350px;
+        height: 490px;
+        position: relative;
+        top: 180px;
+        left: 10px;
+    }
+    .content .squad-field .field_card #cards{
+        width: 90px;
+        height: 90px;
+    }
+    .card10{
+        margin-bottom: 130px;
+        margin-right: 90px;
+    }
+    .card11{
+        margin-right: 200px;
+    }
+   
+    footer{
+        margin-bottom: 100px;
+    }
+
 }
