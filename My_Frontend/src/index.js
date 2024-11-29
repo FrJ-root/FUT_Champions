@@ -52,7 +52,7 @@ fetch(urlJson)
 })
  
 
-// ___________________________
+// ____________validation_______________
 
 
 function toValidate(ex) {
@@ -125,7 +125,7 @@ function validatePlayerForm(form) {
 }
 
 
-// ----------------------------
+// -------------drag & drop---------------
 
 
 
@@ -133,25 +133,34 @@ function validatePlayerForm(form) {
 // const dropZone = document.getElementById('dropzone');
 
 //         draggableItem.addEventListener('dragstart', (event) => {
+
 //             event.dataTransfer.setData('text/plain', event.target.id);
 //             event.target.style.opacity = '1';
+
 //         });
 
 //         draggableItem.addEventListener('dragend', (event) => {
+
 //             event.target.style.opacity = '1';
+
 //         });
 
 //         dropZone.addEventListener('dragover', (event) => {
 //             event.preventDefault();
+
 //             dropZone.classList.add('over');
 //         });
 
-//         dropZone.addEventListener('dragleave', () => {
+//         dropZone.addEventListener('dragleave', (event) => {
+//             event.preventDefault();
+
 //             dropZone.classList.remove('over');
 //         });
 
 //         dropZone.addEventListener('drop', (event) => {
 //             event.preventDefault();
+
+
 //             dropZone.classList.remove('over');
 
 //             const draggedId = event.dataTransfer.getData('text/plain');
@@ -162,7 +171,7 @@ function validatePlayerForm(form) {
 
 
 
-// ----------------- show image -------------------
+// ----------------- show image in form-------------------
 
 
 
@@ -261,12 +270,20 @@ function getFromLocal() {
                                 <span>${player.physical}</span>
                                 </div>
                             </div>
+                            <div style="">
                             <button class="edit-button" style="margin-top: 10px; padding: 5px 10px; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;" data-player-id="${player.name}">
                                 Edit
                             </button>
+                            <button class="delete-button" style="margin-top: 5px; padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;" data-player-id="${player.name}">
+                                Delete
+                            </button>
+                            </div>
                         </div>`;
                         document.querySelector(`.edit-button[data-player-id="${player.name}"]`).addEventListener('click', () => {
                             openEditForm(player);
+                        });
+                        document.querySelector(`.delete-button[data-player-id="${player.name}"]`).addEventListener('click', () => {
+                            deletePlayer(player.name);
                         });
                     });
 }
@@ -331,3 +348,24 @@ function renderPlayers() {
     players.forEach((player) => lwskh(player));
 }
 renderPlayers();
+
+
+// ---------------delete card player------------------
+
+
+function deletePlayer(playerName) {
+    const players = JSON.parse(localStorage.getItem('players')) || [];
+    const updatedPlayers = players.filter((player) => player.name !== playerName);
+    localStorage.setItem('players', JSON.stringify(updatedPlayers));
+    renderPlayers();
+}
+function renderPlayers() {
+    const players = JSON.parse(localStorage.getItem('players')) || [];
+    const container = document.getElementById('playerContainer');
+    container.innerHTML = '';
+    players.forEach((player) => lwskh(player));
+}
+renderPlayers();
+
+
+// -------------------------------------
