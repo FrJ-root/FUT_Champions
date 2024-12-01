@@ -105,7 +105,7 @@ header {
     grid-gap: 20px;
     margin: 20px;
 }
-.content .squad-field .field_card #cards{
+.content .squad-field .field_card .allCards{
     width: 160px;
     display: flex;
     flex-direction: column;
@@ -114,6 +114,7 @@ header {
     background-size: 100%;
     background-repeat: no-repeat;
     filter: grayscale(50%);
+    cursor: pointer;
 }
 .draggable-item {
     cursor: move;
@@ -121,10 +122,10 @@ header {
 .drop-zone {
     display: flex;
 }
-.content .squad-field .field_card #cards img{
+.content .squad-field .field_card .allCards img{
     width: 60px;
 }
-.content .squad-field .field_card #cards, .playerName{
+.content .squad-field .field_card .allCards, .playerName{
     color: white;
     font-size: 10px;
     text-align: center;
@@ -153,7 +154,7 @@ header {
     display: flex;
     justify-content: space-evenly;
 }
-.content .squad-field .field_card #cards:hover{
+.content .squad-field .field_card .allCards:hover{
     filter: grayscale(0%);
     transform: translateY(-10px);
 }
@@ -222,6 +223,15 @@ hr {
     background-color: #4a5568;
     margin: 24px 0;
 }
+#successMessage {
+    font-size: 14px;
+    font-weight: 500;
+    color: green;
+    background-color: #e6f4ea;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
 
 
 footer{
@@ -260,46 +270,104 @@ footer{
 }
 
 
-@media (max-width: 1000px){
-   
-    #container{
-        overflow: hidden;
-    }
-    .content{
-        width: 1000px;
+@media (max-width: 1024px) {
+    .content .squad-field {
+        width: 700px;
+        position: relative;
+        top: 140px;
+        left: 20px;
     }
     .content .squad-field .field_card{
-        width: 600px;
-        height: 500px;
-    }
-    .content .squad-field{
-        width: 600px;
+        width: 200px;
         height: 500px;
         position: relative;
-        top: 170px;
-        left: 10px;
+        left: 40px;
+    }
+    .content .squad-field .field_card .allCards {
+        width: 100px;
+    }
+    
+    .content .Reserve-field{
+        position: relative;
+        right: 170px;
     }
     .content .Reserve-field .form{
-        width: 350px;
-        height: 490px;
+        width: 300px;
+        height: 500px;
         position: relative;
-        top: 180px;
-        left: 10px;
+        top: 160px;
+        left: 200px;
     }
-    .content .squad-field .field_card #cards{
-        width: 90px;
-        height: 90px;
+}
+@media (max-width: 768px) {
+    header .menu{
+        width: 20px;
+        position: relative;
+        right: 310px;
     }
-    .card10{
-        margin-bottom: 130px;
-        margin-right: 90px;
+    header .socieux{
+        width: 20px;
+        position: relative;
+        right: 200px;
+        img{
+            display: none;
+        }
     }
-    .card11{
-        margin-right: 200px;
+    .content .squad-field{
+        width: 900px;
+        position: relative;
+        top: 300px;
     }
-   
-    footer{
-        margin-bottom: 100px;
+    .content .squad-field .field_card{
+        height: 200px;
     }
-
+    .content .squad-field .field_card .allCards{
+        width: 60px;
+    }
+    .content .Reserve-field .form{
+        width: 220px;
+        height: 400px;
+        margin-right: 40px;
+        margin-top: 130px;
+    }
+}
+@media (max-width: 480px) {
+    header .menu{
+        display: none;
+    }
+    header .socieux span{
+        display: none;
+    }
+    header .socieux .login{
+        display: none;
+    }
+    header .logo{
+        margin-left: 190px;
+    }
+    #playerReserve{
+        height: 230px;
+    }
+    #placement{
+        height: 230px;
+    }
+    .content .squad-field{
+        width: 450px;
+        height: 600px;
+        position: relative;
+        top: 450px;
+    }
+    .content .squad-field .field_card{
+        width: 40px;
+        height: 200px;
+    }
+    .content .squad-field .field_card .allCards{
+        width: 40px;
+    }
+    .content .Reserve-field .form{
+        width: 120px;
+        height: 250px;
+        position: relative;
+        top: 310px;
+        left: 235px;
+    }
 }

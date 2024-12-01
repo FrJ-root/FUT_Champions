@@ -8,7 +8,7 @@ fetch(urlJson)
     const data = res.players;
     let cardPlayer = '';
     data.forEach(player=>{
-        cardPlayer+=`<div id="draggable" style="width: 500px;
+        cardPlayer+=`<div id="card" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 500px;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
@@ -55,73 +55,101 @@ fetch(urlJson)
 // ____________validation_______________
 
 
-function toValidate(ex) {
+function validateForm() {
+    const errorMessages = document.querySelectorAll('.error');
+    errorMessages.forEach((msg) => msg.remove());
+    const name = document.getElementById('nameR').value.trim();
+    const pictureURL = document.getElementById('pictureURL').value.trim();
+    const position = document.getElementById('positionR').value.trim();
+    const nationality = document.getElementById('Nationality').value.trim();
+    const flagURL = document.getElementById('flagURL').value.trim();
+    const club = document.getElementById('club').value.trim();
+    const rating = document.getElementById('Rating').value.trim();
+    const pace = document.getElementById('Pace').value.trim();
+    const shooting = document.getElementById('Shooting').value.trim();
+    const passing = document.getElementById('Passing').value.trim();
+    const dribbling = document.getElementById('Dribbling').value.trim();
+    const defending = document.getElementById('Defending').value.trim();
+    const physical = document.getElementById('Physical').value.trim();
     let isValid = true;
-    let errorSpan = ex.parentElement.querySelector('.errorMessage');
-    if (!ex.value.trim()) {
+    if (!name) {
+        displayError('nameR', 'Name is required');
         isValid = false;
-        if (!errorSpan) {
-            errorSpan = document.createElement('span');
-            errorSpan.classList.add('errorMessage');
-            errorSpan.style.color = 'rgb(255, 0, 0)';
-            errorSpan.style.fontSize = '0.875rem';
-            ex.parentElement.appendChild(errorSpan);
-        }
-        errorSpan.textContent = "This field is required.";
-    } else {
-        if (errorSpan) {
-            errorSpan.textContent = "";
-        }
     }
-    return isValid;
+    if (!pictureURL || !isValidURL(pictureURL)) {
+        displayError('pictureURL', 'Please enter a valid photo URL');
+        isValid = false;
+    }
+    if (!position) {
+        displayError('positionR', 'Position is required');
+        isValid = false;
+    }
+    if (!nationality) {
+        displayError('Nationality', 'Nationality is required');
+        isValid = false;
+    }
+    if (!flagURL || !isValidURL(flagURL)) {
+        displayError('flagURL', 'Please enter a valid flag URL');
+        isValid = false;
+    }
+    if (!club) {
+        displayError('club', 'Club is required');
+        isValid = false;
+    }
+    if (!rating || rating < 1 || rating > 100) {
+        displayError('Rating', 'Rating must be between 1 and 100');
+        isValid = false;
+    }
+    if (!pace || pace < 1 || pace > 100) {
+        displayError('Pace', 'Pace must be between 1 and 100');
+        isValid = false;
+    }
+    if (!shooting || shooting < 1 || shooting > 100) {
+        displayError('Shooting', 'Shooting must be between 1 and 100');
+        isValid = false;
+    }
+    if (!passing || passing < 1 || passing > 100) {
+        displayError('Passing', 'Passing must be between 1 and 100');
+        isValid = false;
+    }
+    if (!dribbling || dribbling < 1 || dribbling > 100) {
+        displayError('Dribbling', 'Dribbling must be between 1 and 100');
+        isValid = false;
+    }
+    if (!defending || defending < 1 || defending > 100) {
+        displayError('Defending', 'Defending must be between 1 and 100');
+        isValid = false;
+    }
+    if (!physical || physical < 1 || physical > 100) {
+        displayError('Physical', 'Physical must be between 1 and 100');
+        isValid = false;
+    }
+    if (isValid) {
+        addToLocal();
+        toggleSuccessMessage(true);
+        setTimeout(() => {
+            toggleSuccessMessage(false);
+        }, 3000);
+    }
 }
-function validatePlayerForm(form) {
-
-    let isFormValid = true;
-
-    const nameField = form.querySelector("input[name='name']");
-    if (!toValidate(nameField)) {
-        isFormValid = false;
+function isValidURL(url) {
+    const regex = /^(http|https):\/\/[^ "]+$/;
+    return regex.test(url);
+}
+function displayError(inputId, message) {
+    const inputField = document.getElementById(inputId);
+    const errorMessage = document.createElement('div');
+    errorMessage.textContent = message;
+    errorMessage.classList.add('text-red-500', 'error');
+    inputField.parentElement.appendChild(errorMessage);
+}
+function toggleSuccessMessage(show) {
+    const successMessage = document.getElementById('successMessage');
+    if (show) {
+        successMessage.classList.remove('hidden');
+    } else {
+        successMessage.classList.add('hidden');
     }
-
-    const photoField = form.querySelector("input[name='pictureUpload']");
-    if (!toValidate(photoField).length) {
-        isFormValid = false;
-    } else if (toValidate(photoField).files[0].size / 1024 / 1024 > 10) {
-        isFormValid = false;
-    }
-
-    const positionField = form.querySelector('input[name="position"]');
-    if (!toValidate(positionField)) {
-        isFormValid = false;
-    }
-
-    const nationalityField = form.Nationality.value;
-    if (toValidate(nationalityField) === "") {
-        isFormValid = false;
-    }
-
-    const flagField = form.querySelector("input[name='flagUpload']");
-    if (!toValidate(flagField).length) {
-        isFormValid = false;
-    } else if (toValidate(flagField).files[0].size / 1024 / 1024 > 10) {
-        isFormValid = false;
-    }
-
-    const clubField = form.querySelector("input[name='club']");
-    if (!toValidate(clubField)) {
-        isFormValid = false;
-    }
-
-    const ratingFields = ['#Rating', '#Diving', '#Handling', '#Kicking', '#Reflexes', '#spped', '#positioning'];
-    for (let fieldSelector of ratingFields) {
-        const ratingField = form.querySelector(fieldSelector);
-        if (ratingField && (ratingField.value < 1 || ratingField.value > 100)) {
-            isFormValid = false;
-            break;
-        }
-    }
-    return isFormValid;
 }
 
 
@@ -129,45 +157,24 @@ function validatePlayerForm(form) {
 
 
 
-// const draggableItem = document.getElementById('draggable');
-// const dropZone = document.getElementById('dropzone');
-
-//         draggableItem.addEventListener('dragstart', (event) => {
-
-//             event.dataTransfer.setData('text/plain', event.target.id);
-//             event.target.style.opacity = '1';
-
-//         });
-
-//         draggableItem.addEventListener('dragend', (event) => {
-
-//             event.target.style.opacity = '1';
-
-//         });
-
-//         dropZone.addEventListener('dragover', (event) => {
-//             event.preventDefault();
-
-//             dropZone.classList.add('over');
-//         });
-
-//         dropZone.addEventListener('dragleave', (event) => {
-//             event.preventDefault();
-
-//             dropZone.classList.remove('over');
-//         });
-
-//         dropZone.addEventListener('drop', (event) => {
-//             event.preventDefault();
-
-
-//             dropZone.classList.remove('over');
-
-//             const draggedId = event.dataTransfer.getData('text/plain');
-//             const draggedElement = document.getElementById(draggedId);
-
-//             dropZone.appendChild(draggedElement);
-//         });
+function allowDrop(ev) {
+    ev.preventDefault();
+  }
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    let draggedElement = document.getElementById(data);
+    let targetElement = ev.target;
+    let targetRect = targetElement.getBoundingClientRect();
+    draggedElement.style.position = "relative";
+    draggedElement.style.top = `${targetRect.top}`;
+    draggedElement.style.left = `${targetRect.left}`;
+    draggedElement.style.width = "160px";
+    targetElement.parentNode.replaceChild(draggedElement, targetElement);
+}
 
 
 
@@ -181,7 +188,6 @@ function updateImagePreview(inputId, previewId) {
     input.addEventListener('input', () => {
         const imageUrl = input.value;
         previewDiv.innerHTML = '';
-
         if (imageUrl) {
             const img = document.createElement('img');
             img.src = imageUrl;
@@ -189,7 +195,6 @@ function updateImagePreview(inputId, previewId) {
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'cover';
-
             previewDiv.appendChild(img);
         } else {
             previewDiv.innerHTML = '<span class="text-sm">No photo</span>';
@@ -225,14 +230,12 @@ localStorage.setItem('players', JSON.stringify(playersNenber));
 getFromLocal();
 
 }
-
 getFromLocal();
-
 function getFromLocal() {
     const placementDiv = document.getElementById('placement'); 
     placementDiv.innerHTML=''
     playersNenber.forEach((player) => {
-        placementDiv.innerHTML += `<div id="drag" style="width: 160px;
+        placementDiv.innerHTML += `<div id="drag" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 160px;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
@@ -336,7 +339,7 @@ function saveEditedPlayer(playerName) {
         };
 
         localStorage.setItem('players', JSON.stringify(players));
-
+        location.reload();
         renderPlayers();
         document.getElementById('editFormContainer').style.display = 'none';
     }
@@ -345,7 +348,6 @@ function renderPlayers() {
     const players = JSON.parse(localStorage.getItem('players')) || [];
     const container = document.getElementById('playerContainer');
     container.innerHTML = '';
-    players.forEach((player) => lwskh(player));
 }
 renderPlayers();
 
@@ -353,19 +355,16 @@ renderPlayers();
 // ---------------delete card player------------------
 
 
-function deletePlayer(playerName) {
+function deletePlayer(index) {
     const players = JSON.parse(localStorage.getItem('players')) || [];
-    const updatedPlayers = players.filter((player) => player.name !== playerName);
-    localStorage.setItem('players', JSON.stringify(updatedPlayers));
+    players.splice(index, 1);
+    localStorage.setItem('players', JSON.stringify(players));
+    location.reload();
     renderPlayers();
 }
-function renderPlayers() {
-    const players = JSON.parse(localStorage.getItem('players')) || [];
-    const container = document.getElementById('playerContainer');
-    container.innerHTML = '';
-    players.forEach((player) => lwskh(player));
-}
-renderPlayers();
 
 
 // -------------------------------------
+
+
+
