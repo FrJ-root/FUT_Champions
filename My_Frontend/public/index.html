@@ -67,27 +67,27 @@
 
                 <section class="squad-field">
                     <div class="field_card">
-                        <div id="card1" class="allCards LCM" style="position: relative;top:190px;left:140px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card1" class="allCards" data-position="CM" style="position: relative;top:190px;left:140px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card2" class="allCards LW" style="position: relative;bottom:10px;right:100px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card2" class="allCards" data-position="LW" style="position: relative;bottom:10px;right:100px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card3" class="allCards ST" style="position: relative;top:15px;right:80px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card3" class="allCards" data-position="ST" style="position: relative;top:15px;right:80px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card4" class="allCards RW" style="position: relative;bottom:10px;right:70px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card4" class="allCards" data-position="RW" style="position: relative;bottom:10px;right:70px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card5" class="allCards LB" style="position: relative;top:110px;right: 10px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card5" class="allCards" data-position="LB" style="position: relative;top:110px;right: 10px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card6" class="allCards CM" style="position: relative;bottom:10px;left: 128px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card6" class="allCards" data-position="CM" style="position: relative;bottom:10px;left: 128px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card7" class="allCards RCM" style="position: relative;bottom:40px;left: 110px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card7" class="allCards" data-position="CM" style="position: relative;bottom:40px;left: 110px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card8" class="allCards RB" style="position: relative;top:110px;left: 45px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card8" class="allCards" data-position="RB" style="position: relative;top:110px;left: 45px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card9" class="allCards CB" style="position: relative;bottom:60px;left: 160px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card9" class="allCards" data-position="CB" style="position: relative;bottom:60px;left: 160px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card10" class="allCards GK" style="position: relative;top:20px;left: 120px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card10" class="allCards" data-position="GK" style="position: relative;top:20px;left: 120px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
-                        <div id="card11" class="allCards CB"style="position: relative;bottom: 60px;left: 80px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div id="card11" class="allCards" data-position="CB" style="position: relative;bottom: 60px;left: 80px;" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </div>
                     </div>
                 </section>
@@ -136,14 +136,14 @@
                                 <div class="mt-2">
                                     <select id="positionR" name="position" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6 ml-4">
                                         <option value="">Select a position &#8595;</option>
-                                        <option>GK - Goalkeeper</option>
-                                        <option>CB - Center Back</option>
-                                        <option>RB - Right Back</option>
-                                        <option>LB - Left Back</option>
-                                        <option>CM - Central Midfielder</option>
-                                        <option>RW - Right Wing</option>
-                                        <option>ST - Striker</option>
-                                        <option>LW - Left Wing</option>
+                                        <option>GK</option>
+                                        <option>CB</option>
+                                        <option>RB</option>
+                                        <option>LB</option>
+                                        <option>CM</option>
+                                        <option>RW</option>
+                                        <option>ST</option>
+                                        <option>LW</option>
                                     </select>
                                 </div>
                             </div>
@@ -348,11 +348,11 @@
                 </form>
             </div>  
             
-            <div id="successMessage" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 w-full h-36" style="z-index: 1000;">
+            <div id="AddPlayerSucces" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 w-full h-36" style="z-index: 1000;">
                 <div class="bg-white text-green-600 text-center p-6 rounded-md shadow-lg">
                     <p class="font-bold text-lg">Player added successfully ^_^</p>
                 </div>
-            </div>        
+            </div>       
 
         </div>
 

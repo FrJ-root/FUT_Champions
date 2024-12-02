@@ -1,6 +1,7 @@
+const playersNenber = JSON.parse(localStorage.getItem('players')) || [];
+const players = JSON.parse(localStorage.getItem('players')) || [];
 let cardPlayer = document.getElementById("playerReserve");
 const urlJson = "../../My_Backend/package.json"
-const playersNenber = JSON.parse(localStorage.getItem('players')) || [];
 
 fetch(urlJson)
 .then(response => response.json())
@@ -52,7 +53,9 @@ fetch(urlJson)
 })
  
 
+
 // ____________validation_______________
+
 
 
 function validateForm() {
@@ -126,9 +129,9 @@ function validateForm() {
     }
     if (isValid) {
         addToLocal();
-        toggleSuccessMessage(true);
+        AddPlayerToggle(true);
         setTimeout(() => {
-            toggleSuccessMessage(false);
+            AddPlayerToggle(false);
         }, 3000);
     }
 }
@@ -143,14 +146,7 @@ function displayError(inputId, message) {
     errorMessage.classList.add('text-red-500', 'error');
     inputField.parentElement.appendChild(errorMessage);
 }
-function toggleSuccessMessage(show) {
-    const successMessage = document.getElementById('successMessage');
-    if (show) {
-        successMessage.classList.remove('hidden');
-    } else {
-        successMessage.classList.add('hidden');
-    }
-}
+
 
 
 // -------------drag & drop---------------
@@ -159,7 +155,7 @@ function toggleSuccessMessage(show) {
 
 function allowDrop(ev) {
     ev.preventDefault();
-  }
+}
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
@@ -174,6 +170,22 @@ function drop(ev) {
     draggedElement.style.left = `${targetRect.left}`;
     draggedElement.style.width = "160px";
     targetElement.parentNode.replaceChild(draggedElement, targetElement);
+}
+function dragDisplayMessage(message) {
+    const messageBox = document.createElement("div");
+    messageBox.innerText = message;
+    messageBox.style.position = "fixed";
+    messageBox.style.top = "20px";
+    messageBox.style.right = "20px";
+    messageBox.style.backgroundColor = "red";
+    messageBox.style.color = "white";
+    messageBox.style.padding = "10px 20px";
+    messageBox.style.borderRadius = "5px";
+    messageBox.style.zIndex = "1000";
+    document.body.appendChild(messageBox);
+    setTimeout(() => {
+        document.body.removeChild(messageBox);
+    }, 3000);
 }
 
 
@@ -209,6 +221,7 @@ updateImagePreview('flagURL', 'flagPreview');
 // ---------------Local Storage----------------
 
 
+
 function addToLocal(){
     const player = {
         name: document.getElementById('nameR').value,
@@ -228,7 +241,6 @@ function addToLocal(){
     playersNenber.push(player)
 localStorage.setItem('players', JSON.stringify(playersNenber));
 getFromLocal();
-
 }
 getFromLocal();
 function getFromLocal() {
@@ -292,6 +304,7 @@ function getFromLocal() {
 }
 
 
+
 // // -----------Edit card player-----------
 
 
@@ -318,7 +331,6 @@ function openEditForm(player) {
     };
 }
 function saveEditedPlayer(playerName) {
-    const players = JSON.parse(localStorage.getItem('players')) || [];
     const playerIndex = players.findIndex((p) => p.name === playerName);
     if (playerIndex !== -1) {
         players[playerIndex] = {
@@ -337,34 +349,80 @@ function saveEditedPlayer(playerName) {
             defending: document.getElementById('editDefending').value,
             physical: document.getElementById('editPhysical').value,
         };
-
         localStorage.setItem('players', JSON.stringify(players));
-        location.reload();
-        renderPlayers();
         document.getElementById('editFormContainer').style.display = 'none';
+        editDisplayMessage("Player Edited Succes ^_-");
+        setTimeout(()=>{
+            location.reload();
+        },2000);
+        renderPlayers();
     }
 }
 function renderPlayers() {
-    const players = JSON.parse(localStorage.getItem('players')) || [];
     const container = document.getElementById('playerContainer');
     container.innerHTML = '';
 }
-renderPlayers();
+
 
 
 // ---------------delete card player------------------
+
 
 
 function deletePlayer(index) {
     const players = JSON.parse(localStorage.getItem('players')) || [];
     players.splice(index, 1);
     localStorage.setItem('players', JSON.stringify(players));
-    location.reload();
+    deleteDisplayMessage("Player deleted successfully ^_-");
+    setTimeout(()=>{
+        location.reload();
+    }, 2000);
     renderPlayers();
 }
 
 
-// -------------------------------------
+
+// --------------------toggle message----------------------
 
 
 
+function AddPlayerToggle(show) {
+    const successMessage = document.getElementById('AddPlayerSucces');
+    if (show) {
+        successMessage.classList.remove('hidden');
+    } else {
+        successMessage.classList.add('hidden');
+    }
+}
+function deleteDisplayMessage(message) {
+    const messageBox = document.createElement("div");
+    messageBox.innerText = message;
+    messageBox.style.position = "fixed";
+    messageBox.style.top = "20px";
+    messageBox.style.right = "20px";
+    messageBox.style.backgroundColor = "red";
+    messageBox.style.color = "white";
+    messageBox.style.padding = "10px 20px";
+    messageBox.style.borderRadius = "5px";
+    messageBox.style.zIndex = "1000";
+    document.body.appendChild(messageBox);
+    setTimeout(() => {
+        document.body.removeChild(messageBox);
+    }, 3000);
+}
+function editDisplayMessage(message) {
+    const messageBox = document.createElement("div");
+    messageBox.innerText = message;
+    messageBox.style.position = "fixed";
+    messageBox.style.top = "20px";
+    messageBox.style.right = "20px";
+    messageBox.style.backgroundColor = "green";
+    messageBox.style.color = "white";
+    messageBox.style.padding = "10px 20px";
+    messageBox.style.borderRadius = "5px";
+    messageBox.style.zIndex = "1000";
+    document.body.appendChild(messageBox);
+    setTimeout(() => {
+        document.body.removeChild(messageBox);
+    }, 3000);
+}

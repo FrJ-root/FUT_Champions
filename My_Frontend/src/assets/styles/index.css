@@ -3,6 +3,9 @@
     padding: 0px;
     box-sizing: border-box;
 }
+:root{
+    background-color: rgb(0, 0, 0);
+}
 header {
     display: flex;
     justify-content: space-between;
@@ -10,6 +13,8 @@ header {
     border-bottom: 1px solid rgb(9, 255, 0);
     width: 100%;
     height: fit-content;
+    /* position: fixed;
+    z-index: 1; */
 }
 .logo {
     width: 90px;
@@ -124,35 +129,6 @@ header {
 }
 .content .squad-field .field_card .allCards img{
     width: 60px;
-}
-.content .squad-field .field_card .allCards, .playerName{
-    color: white;
-    font-size: 10px;
-    text-align: center;
-    font-family: sans-serif;
-}
-.content .squad-field .field_card .properTitle, .properNum{
-    font-size: 6px;
-}
-.content .squad-field .field_card .playerName{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    p{
-        margin-top: 5px;
-        margin-bottom: 25px;
-        font-size: 13px;
-    }
-}
-.content .squad-field .field_card .playerName .properTitle{
-    width: 150px;
-    display: flex;
-    justify-content: space-evenly;
-}
-.content .squad-field .field_card .playerName .properNum{
-    width: 150px;
-    display: flex;
-    justify-content: space-evenly;
 }
 .content .squad-field .field_card .allCards:hover{
     filter: grayscale(0%);
