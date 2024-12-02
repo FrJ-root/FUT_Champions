@@ -382,7 +382,7 @@ function deletePlayer(index) {
 
 
 
-// --------------------toggle message----------------------
+// --------------------toggle/message----------------------
 
 
 
