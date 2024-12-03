@@ -77,55 +77,55 @@ function validateForm() {
     const physical = document.getElementById('Physical').value.trim();
     let isValid = true;
     if (!name) {
-        displayError('nameR', 'Name is required');
+        displayError('nameR', 'Oooops!');
         isValid = false;
     }
     if (!pictureURL || !isValidURL(pictureURL)) {
-        displayError('pictureURL', 'Please enter a valid photo URL');
+        displayError('pictureURL', 'Oooops! Photo URL not Valid');
         isValid = false;
     }
     if (!position) {
-        displayError('positionR', 'Position is required');
+        displayError('positionR', 'Oooops!');
         isValid = false;
     }
     if (!nationality) {
-        displayError('Nationality', 'Nationality is required');
+        displayError('Nationality', 'Oooops!');
         isValid = false;
     }
     if (!flagURL || !isValidURL(flagURL)) {
-        displayError('flagURL', 'Please enter a valid flag URL');
+        displayError('flagURL', 'Oooops! Flag URL not Valid');
         isValid = false;
     }
     if (!club) {
-        displayError('club', 'Club is required');
+        displayError('club', 'Oooops!');
         isValid = false;
     }
     if (!rating || rating < 1 || rating > 100) {
-        displayError('Rating', 'Rating must be between 1 and 100');
+        displayError('Rating', 'Oooops! 1 <= Rating <= 100');
         isValid = false;
     }
     if (!pace || pace < 1 || pace > 100) {
-        displayError('Pace', 'Pace must be between 1 and 100');
+        displayError('Pace', 'Oooops! 1 <= Pace <= 100');
         isValid = false;
     }
     if (!shooting || shooting < 1 || shooting > 100) {
-        displayError('Shooting', 'Shooting must be between 1 and 100');
+        displayError('Shooting', 'Oooops! 1 <= Shooting <= 100');
         isValid = false;
     }
     if (!passing || passing < 1 || passing > 100) {
-        displayError('Passing', 'Passing must be between 1 and 100');
+        displayError('Passing', 'Oooops! 1 <= Passing <= 100');
         isValid = false;
     }
     if (!dribbling || dribbling < 1 || dribbling > 100) {
-        displayError('Dribbling', 'Dribbling must be between 1 and 100');
+        displayError('Dribbling', 'Oooops! 1 <= Dribbling <= 100');
         isValid = false;
     }
     if (!defending || defending < 1 || defending > 100) {
-        displayError('Defending', 'Defending must be between 1 and 100');
+        displayError('Defending', 'Oooops! 1 <= Defending <= 100');
         isValid = false;
     }
     if (!physical || physical < 1 || physical > 100) {
-        displayError('Physical', 'Physical must be between 1 and 100');
+        displayError('Physical', 'Oooops! 1 <= Physical <= 100');
         isValid = false;
     }
     if (isValid) {
@@ -137,7 +137,7 @@ function validateForm() {
     }
 }
 function isValidURL(url) {
-    const regex = /^(http|https):\/\/[^ "]+$/;
+    const regex = /^(http|https|ftp):\/\/[^ "]+$/;
     return regex.test(url);
 }
 function displayError(inputId, message) {
@@ -268,6 +268,14 @@ function getFromLocal() {
 }
 
 
+function counterPlayers(){
+    const players = document.querySelector("#placement");
+    let arr = [];
+    arr.push(players);
+    console.log(arr);
+}
+
+
 
 
 // -------------Drag & Drop---------------
@@ -286,10 +294,10 @@ function drop(ev) {
     let data = ev.dataTransfer.getData("text");
     let draggedElement = document.getElementById(data);
     let targetElement = ev.target;
-    let targetRect = targetElement.getBoundingClientRect();
+    let targetCoord = targetElement.getBoundingClientRect();
     draggedElement.style.position = "relative";
-    draggedElement.style.top = `${targetRect.top}`;
-    draggedElement.style.left = `${targetRect.left}`;
+    draggedElement.style.top = `${targetCoord.top}`;
+    draggedElement.style.left = `${targetCoord.left}`;
     draggedElement.style.width = "160px";
     targetElement.parentNode.replaceChild(draggedElement, targetElement);
 }
@@ -399,11 +407,11 @@ function deletePlayer(index) {
 
 
 function AddPlayerToggle(show) {
-    const successMessage = document.getElementById('AddPlayerSucces');
+    const Toggle = document.getElementById('AddPlayerSucces');
     if (show) {
-        successMessage.classList.remove('hidden');
+        Toggle.classList.remove('hidden');
     } else {
-        successMessage.classList.add('hidden');
+        Toggle.classList.add('hidden');
     }
 }
 function deleteDisplayMessage(message) {
