@@ -1,15 +1,15 @@
 const playersNenber = JSON.parse(localStorage.getItem('players')) || [];
 const players = JSON.parse(localStorage.getItem('players')) || [];
-let cardPlayer = document.getElementById("playerReserve");
+let playerReserve = document.getElementById("playerReserve");
 const urlJson = "../../My_Backend/package.json"
 
 fetch(urlJson)
 .then(response => response.json())
 .then(res=>{
     const data = res.players;
-    let cardPlayer = '';
+    let playerReserve = '';
     data.forEach(player=>{
-        cardPlayer+=`<div id="card" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 500px;
+        playerReserve+=`<div id="card" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 500px;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
@@ -49,12 +49,13 @@ fetch(urlJson)
                             </div>
                         </div>`;
     })
-    document.getElementById('playerReserve').innerHTML=cardPlayer;
+    document.getElementById('playerReserve').innerHTML=playerReserve;
 })
  
 
 
 // ____________validation_______________
+
 
 
 
@@ -149,48 +150,9 @@ function displayError(inputId, message) {
 
 
 
-// -------------drag & drop---------------
 
+// -----------------validation IMG-------------------
 
-
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-function drop(ev) {
-    ev.preventDefault();
-    let data = ev.dataTransfer.getData("text");
-    let draggedElement = document.getElementById(data);
-    let targetElement = ev.target;
-    let targetRect = targetElement.getBoundingClientRect();
-    draggedElement.style.position = "relative";
-    draggedElement.style.top = `${targetRect.top}`;
-    draggedElement.style.left = `${targetRect.left}`;
-    draggedElement.style.width = "160px";
-    targetElement.parentNode.replaceChild(draggedElement, targetElement);
-}
-function dragDisplayMessage(message) {
-    const messageBox = document.createElement("div");
-    messageBox.innerText = message;
-    messageBox.style.position = "fixed";
-    messageBox.style.top = "20px";
-    messageBox.style.right = "20px";
-    messageBox.style.backgroundColor = "red";
-    messageBox.style.color = "white";
-    messageBox.style.padding = "10px 20px";
-    messageBox.style.borderRadius = "5px";
-    messageBox.style.zIndex = "1000";
-    document.body.appendChild(messageBox);
-    setTimeout(() => {
-        document.body.removeChild(messageBox);
-    }, 3000);
-}
-
-
-
-// ----------------- show image in form-------------------
 
 
 
@@ -218,7 +180,9 @@ updateImagePreview('flagURL', 'flagPreview');
 
 
 
-// ---------------Local Storage----------------
+
+// ---------------Add Player----------------
+
 
 
 
@@ -305,7 +269,52 @@ function getFromLocal() {
 
 
 
+
+// -------------Drag & Drop---------------
+
+
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    let draggedElement = document.getElementById(data);
+    let targetElement = ev.target;
+    let targetRect = targetElement.getBoundingClientRect();
+    draggedElement.style.position = "relative";
+    draggedElement.style.top = `${targetRect.top}`;
+    draggedElement.style.left = `${targetRect.left}`;
+    draggedElement.style.width = "160px";
+    targetElement.parentNode.replaceChild(draggedElement, targetElement);
+}
+function dragDisplayMessage(message) {
+    const messageBox = document.createElement("div");
+    messageBox.innerText = message;
+    messageBox.style.position = "fixed";
+    messageBox.style.top = "20px";
+    messageBox.style.right = "20px";
+    messageBox.style.backgroundColor = "red";
+    messageBox.style.color = "white";
+    messageBox.style.padding = "10px 20px";
+    messageBox.style.borderRadius = "5px";
+    messageBox.style.zIndex = "1000";
+    document.body.appendChild(messageBox);
+    setTimeout(() => {
+        document.body.removeChild(messageBox);
+    }, 3000);
+}
+
+
+
+
 // // -----------Edit card player-----------
+
 
 
 
@@ -365,7 +374,9 @@ function renderPlayers() {
 
 
 
-// ---------------delete card player------------------
+
+// ---------------Delete card player------------------
+
 
 
 
@@ -382,7 +393,8 @@ function deletePlayer(index) {
 
 
 
-// --------------------toggle/message----------------------
+// --------------------Toggle/Message----------------------
+
 
 
 
